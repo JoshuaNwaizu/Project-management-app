@@ -1,25 +1,36 @@
-import React from "react";
+import React, { useRef } from "react";
 import Inputs from "./Inputs";
+import Button from "./Button";
 
-const NewProject = () => {
+const NewProject = ({ onStop }) => {
+  const title = useRef();
+  const description = useRef();
+  const dueDate = useRef();
+
+  const handleSave = () => {
+    const enteredTitle = title.current.value;
+    const enteredDescription = description.current.value;
+    const enteredDueDate = dueDate.current.value;
+  };
   return (
-    <div className="w-[35rem] mt-16">
+    <div className="w-[34rem] mt-16">
       <menu className="flex items-center justify-center my-4 gap-4">
         <li>
-          <button className="text-stone-800 hover:text-stone-600">
+          <button
+            className="text-stone-800 hover:text-stone-600"
+            onClick={onStop}
+          >
             Cancel
           </button>
         </li>
         <li>
-          <button className="py-2 px-6 text-stone-50 rounded-md bg-stone-800 hover:bg-stone-950">
-            Save
-          </button>
+          <Button onClick={handleSave}>Save</Button>
         </li>
       </menu>
       <div>
-        <Inputs label="Title" />
-        <Inputs label="Description" textarea />
-        <Inputs label="Due date" />
+        <Inputs label="Title" ref={title} />
+        <Inputs label="Description" ref={description} textarea />
+        <Inputs label="Due date" ref={dueDate} />
       </div>
     </div>
   );
