@@ -32,9 +32,13 @@ const NewProject = ({ onStop, addData }) => {
   return (
     <>
       <Modal ref={modal} buttonText="Close">
-        <h2>Invalid Input</h2>
-        <p>Please enter a valid text</p>
-        <p>Check for the imperative main of the actual and house </p>
+        <h2 className="text-2xl my-4 text-stone-800">Invalid Input :(</h2>
+        <p className="text-stone-700 mb-4">
+          Oops... Looks like you missed a field.
+        </p>
+        <p className="text-stone-700 mb-4">
+          Please make sure you provide a value for every input field.
+        </p>
       </Modal>
       <div className="w-[34rem] mt-16">
         <menu className="flex items-center justify-center my-4 gap-4">

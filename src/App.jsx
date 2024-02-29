@@ -2,14 +2,18 @@ import { useState } from "react";
 import NewProject from "./NewProject";
 import NoContent from "./NoContent";
 import ProjectsSideBar from "./ProjectsSideBar";
-import { useId } from "react";
+import SelectedProject from "./SelectedProject";
 
 function App() {
   // const id = useId();
   const [projectSelected, setProjectSelected] = useState({
     selectedProjectsId: undefined,
     projects: [],
+    tasks: [],
   });
+
+  const handleAddTasks = () => {};
+  const handleDeleteTasks = () => {};
 
   const handleStartProjects = () => {
     setProjectSelected((prevSelected) => {
@@ -41,9 +45,38 @@ function App() {
     });
   };
 
-  console.log(projectSelected);
+  const handleSelectedList = (id) => {
+    setProjectSelected((prevSelected) => {
+      return {
+        ...prevSelected,
+        selectedProjectsId: id,
+      };
+    });
+  };
 
-  let content;
+  const handleDeleteItems = () => {
+    setProjectSelected((prevSelected) => {
+      return {
+        ...prevSelected,
+        selectedProjectsId: undefined,
+        projects: prevSelected.projects.filter(
+          (project) => project.id !== prevSelected.selectedProjectsId,
+        ),
+      };
+    });
+  };
+  const selectedList = projectSelected.projects.find(
+    (project) => project.id === projectSelected.selectedProjectsId,
+  );
+
+  let content = (
+    <SelectedProject
+      project={selectedList}
+      onDelete={handleDeleteItems}
+      onAddTasks={handleAddTasks}
+      onDeleteTasks={handleDeleteTasks}
+    />
+  );
 
   if (projectSelected.selectedProjectsId === undefined) {
     content = <NoContent onSubmit={handleStartProjects} />;
@@ -60,6 +93,7 @@ function App() {
       <ProjectsSideBar
         onSubmit={handleStartProjects}
         projects={projectSelected.projects}
+        onSelectedList={handleSelectedList}
       />
       {content}
     </main>
