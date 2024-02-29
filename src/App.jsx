@@ -5,12 +5,11 @@ import ProjectsSideBar from "./ProjectsSideBar";
 import { useId } from "react";
 
 function App() {
-  const id = useId();
+  // const id = useId();
   const [projectSelected, setProjectSelected] = useState({
     selectedProjectsId: undefined,
     projects: [],
   });
-  console.log(id);
 
   const handleStartProjects = () => {
     setProjectSelected((prevSelected) => {
@@ -32,24 +31,36 @@ function App() {
     setProjectSelected((prevSelected) => {
       const newProject = {
         ...projectData,
-        id: id,
+        id: Math.random(),
       };
       return {
         ...prevSelected,
-        projects: [newProject],
+        selectedProjectsId: undefined,
+        projects: [...prevSelected.projects, newProject],
       };
     });
   };
+
+  console.log(projectSelected);
+
   let content;
 
   if (projectSelected.selectedProjectsId === undefined) {
     content = <NoContent onSubmit={handleStartProjects} />;
   } else if (projectSelected.selectedProjectsId === null) {
-    content = <NewProject onStop={handleStopProjects} />;
+    content = (
+      <NewProject
+        onStop={handleStopProjects}
+        addData={handleCreateNewProjects}
+      />
+    );
   }
   return (
     <main className="h-screen my-8 flex gap-8">
-      <ProjectsSideBar onSubmit={handleStartProjects} />
+      <ProjectsSideBar
+        onSubmit={handleStartProjects}
+        projects={projectSelected.projects}
+      />
       {content}
     </main>
   );
