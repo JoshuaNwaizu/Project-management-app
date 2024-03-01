@@ -40,7 +40,7 @@ const NewProject = ({ onStop, addData }) => {
           Please make sure you provide a value for every input field.
         </p>
       </Modal>
-      <div className="w-[34rem] mt-16">
+      <div className="w-[34rem] mt-16  max-sm:mx-4">
         <menu className="flex items-center justify-center my-4 gap-4">
           <li>
             <button

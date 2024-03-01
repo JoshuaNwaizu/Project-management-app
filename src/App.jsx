@@ -3,17 +3,55 @@ import NewProject from "./NewProject";
 import NoContent from "./NoContent";
 import ProjectsSideBar from "./ProjectsSideBar";
 import SelectedProject from "./SelectedProject";
+import { useEffect } from "react";
+import { RiMenu4Line } from "react-icons/ri";
 
 function App() {
   // const id = useId();
+  const [isOpen, setIsOpen] = useState(false);
   const [projectSelected, setProjectSelected] = useState({
     selectedProjectsId: undefined,
     projects: [],
     tasks: [],
   });
 
-  const handleAddTasks = () => {};
-  const handleDeleteTasks = () => {};
+  const handleToogle = () => {
+    setIsOpen((open) => !open);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("projectsComponent", JSON.stringify(projectSelected));
+  }, [projectSelected]);
+
+  useEffect(() => {
+    const storedData = localStorage.getItem("projectsComponent");
+    if (storedData) {
+      setProjectSelected(JSON.parse(storedData));
+    }
+  }, []);
+  const handleAddTasks = (text) => {
+    setProjectSelected((prevSelected) => {
+      const taskId = Math.random();
+      const newTasks = {
+        text: text,
+        projectId: prevSelected.selectedProjectsId,
+        id: taskId,
+      };
+      return {
+        ...prevSelected,
+        tasks: [...prevSelected.tasks, newTasks],
+      };
+    });
+  };
+
+  const handleDeleteTasks = (id) => {
+    setProjectSelected((prevSelected) => {
+      return {
+        ...prevSelected,
+        tasks: prevSelected.tasks.filter((task) => task.id !== id),
+      };
+    });
+  };
 
   const handleStartProjects = () => {
     setProjectSelected((prevSelected) => {
@@ -75,6 +113,7 @@ function App() {
       onDelete={handleDeleteItems}
       onAddTasks={handleAddTasks}
       onDeleteTasks={handleDeleteTasks}
+      tasks={projectSelected.tasks}
     />
   );
 
@@ -89,11 +128,20 @@ function App() {
     );
   }
   return (
-    <main className="h-screen my-8 flex gap-8">
+    <main className="h-screen my-8 flex gap-8 ">
+      <RiMenu4Line
+        className="text-3xl font-bold ml-6 absolute top-7 bg-stone-50 md:hidden"
+        onClick={() => handleToogle()}
+      />
       <ProjectsSideBar
         onSubmit={handleStartProjects}
         projects={projectSelected.projects}
         onSelectedList={handleSelectedList}
+        classNames={
+          isOpen &&
+          " max-sm:block max-sm:w-3/4 max-sm:transition max-sm:ease-out max-sm:duration-500"
+        }
+        handleClose={() => handleToogle()}
       />
       {content}
     </main>

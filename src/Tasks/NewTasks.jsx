@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const NewTasks = ({ onAdd }) => {
-  const [updateInputTasks, setUpdateInputTasks] = useState();
+  const [updateInputTasks, setUpdateInputTasks] = useState("");
 
   const handleInputTasks = (e) => {
     setUpdateInputTasks(e.target.value);
