@@ -13,16 +13,16 @@ const ProjectsSideBar = ({
   return (
     <aside
       className={twMerge(
-        " w-3/4 py-16 px-10 md:w-72 bg-stone-900 text-stone-50 rounded-r-xl max-sm:w-1/2 max-sm:fixed max-sm:top-0 max-sm:h-full max-sm:hidden",
+        " w-3/4 py-16 px-10 md:w-72 bg-stone-900 text-stone-50 rounded-r-xl max-sm:w-1/2 max-sm:fixed max-sm:top-0 max-sm:h-full max-sm:-translate-x-full max-sm:transition-all max-sm:duration-300",
         classNames,
       )}
       onClick={handleClose}
     >
       <button
-        className="  py-2 px-4 text-stone-800 rounded-md bg-stone-50 hover:bg-stone-100 fixed top-10 right-28 md:hidden"
+        className="py-2 px-4 text-stone-800 rounded-md bg-stone-50 hover:bg-stone-100 relative bottom-11 right-7 mr-5 md:hidden"
         // onClick={handleClose}
       >
-        X
+        Close
       </button>
       <h2 className="mb-8 font-bold uppercase md:text-xl text-stone-200">
         Your Projects

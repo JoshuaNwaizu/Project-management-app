@@ -7,6 +7,9 @@ const NewTasks = ({ onAdd }) => {
     setUpdateInputTasks(e.target.value);
   };
   const handleInputClick = () => {
+    if (updateInputTasks.trim() === "" || updateInputTasks.trim === 0) {
+      return;
+    }
     onAdd(updateInputTasks);
     setUpdateInputTasks("");
   };

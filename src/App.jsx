@@ -19,16 +19,16 @@ function App() {
     setIsOpen((open) => !open);
   };
 
-  useEffect(() => {
-    localStorage.setItem("projectsComponent", JSON.stringify(projectSelected));
-  }, [projectSelected]);
+  // useEffect(() => {
+  //   localStorage.setItem("projectsComponent", JSON.stringify(projectSelected));
+  // }, [projectSelected]);
 
-  useEffect(() => {
-    const storedData = localStorage.getItem("projectsComponent");
-    if (storedData) {
-      setProjectSelected(JSON.parse(storedData));
-    }
-  }, []);
+  // useEffect(() => {
+  //   const storedData = localStorage.getItem("projectsComponent");
+  //   if (storedData) {
+  //     setProjectSelected(JSON.parse(storedData));
+  //   }
+  // }, []);
   const handleAddTasks = (text) => {
     setProjectSelected((prevSelected) => {
       const taskId = Math.random();
@@ -137,9 +137,10 @@ function App() {
         onSubmit={handleStartProjects}
         projects={projectSelected.projects}
         onSelectedList={handleSelectedList}
+        selectedListId={projectSelected.selectedProjectsId}
         classNames={
           isOpen &&
-          " max-sm:block max-sm:w-3/4 max-sm:transition max-sm:ease-out max-sm:duration-500"
+          " max-sm:translate-x-0 max-sm:w-3/4 max-sm:transition-all max-sm:ease-out max-sm:duration-500"
         }
         handleClose={() => handleToogle()}
       />
