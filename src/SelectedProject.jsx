@@ -32,7 +32,12 @@ const SelectedProject = ({
           {project.description}
         </p>
       </header>
-      <Tasks onAdd={onAddTasks} onDelete={onDeleteTasks} tasks={tasks} />
+      <Tasks
+        onAdd={onAddTasks}
+        onDelete={onDeleteTasks}
+        tasks={tasks}
+        project={project}
+      />
     </div>
   );
 };

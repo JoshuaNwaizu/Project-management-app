@@ -3,7 +3,6 @@ import NewProject from "./NewProject";
 import NoContent from "./NoContent";
 import ProjectsSideBar from "./ProjectsSideBar";
 import SelectedProject from "./SelectedProject";
-import { useEffect } from "react";
 import { RiMenu4Line } from "react-icons/ri";
 
 function App() {
@@ -19,19 +18,9 @@ function App() {
     setIsOpen((open) => !open);
   };
 
-  // useEffect(() => {
-  //   localStorage.setItem("projectsComponent", JSON.stringify(projectSelected));
-  // }, [projectSelected]);
-
-  // useEffect(() => {
-  //   const storedData = localStorage.getItem("projectsComponent");
-  //   if (storedData) {
-  //     setProjectSelected(JSON.parse(storedData));
-  //   }
-  // }, []);
   const handleAddTasks = (text) => {
     setProjectSelected((prevSelected) => {
-      const taskId = Math.random();
+      const taskId = Math.floor(Math.random() * 100) + 1;
       const newTasks = {
         text: text,
         projectId: prevSelected.selectedProjectsId,
@@ -73,7 +62,7 @@ function App() {
     setProjectSelected((prevSelected) => {
       const newProject = {
         ...projectData,
-        id: Math.random(),
+        id: Math.floor(Math.random() * 100) + 1,
       };
       return {
         ...prevSelected,
