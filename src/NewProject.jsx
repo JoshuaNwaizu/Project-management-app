@@ -3,7 +3,7 @@ import Inputs from "./Inputs";
 import Button from "./Button";
 import Modal from "./Modal";
 
-const NewProject = ({ onStop, addData }) => {
+const NewProject = ({ onStop, addData, handleOpen }) => {
   const modal = useRef();
   const title = useRef();
   const description = useRef();
@@ -21,6 +21,8 @@ const NewProject = ({ onStop, addData }) => {
     ) {
       modal.current.open();
       return;
+    } else {
+      handleOpen();
     }
 
     addData({

@@ -124,6 +124,7 @@ function App() {
       <NewProject
         onStop={handleStopProjects}
         addData={handleCreateNewProjects}
+        handleOpen={handleToogle}
       />
     );
   }
@@ -140,7 +141,7 @@ function App() {
         selectedListId={projectSelected.selectedProjectsId}
         classNames={
           isOpen &&
-          " max-sm:translate-x-0 max-sm:w-3/4 max-sm:transition-all max-sm:ease-out max-sm:duration-500"
+          " max-sm:translate-x-0 max-sm:w-3/4 max-sm:transition-all max-sm:duration-300"
         }
         handleClose={() => handleToogle()}
       />
