@@ -7,6 +7,7 @@ const SelectedProject = ({
   onAddTasks,
   onDeleteTasks,
   tasks,
+  projectId,
 }) => {
   const formattedDate = new Date(project.dueDate).toLocaleDateString("en-US", {
     year: "numeric",
@@ -37,6 +38,7 @@ const SelectedProject = ({
         onDelete={onDeleteTasks}
         tasks={tasks}
         project={project}
+        projectId={projectId}
       />
     </div>
   );

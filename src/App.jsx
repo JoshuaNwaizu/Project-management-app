@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NewProject from "./NewProject";
 import NoContent from "./NoContent";
 import ProjectsSideBar from "./ProjectsSideBar";
@@ -7,12 +7,36 @@ import { RiMenu4Line } from "react-icons/ri";
 
 function App() {
   // const id = useId();
-  const [isOpen, setIsOpen] = useState(false);
-  const [projectSelected, setProjectSelected] = useState({
-    selectedProjectsId: undefined,
-    projects: [],
-    tasks: [],
+  let dataId = "ProjectSelected";
+  const getData = window.localStorage.getItem("isOpen");
+
+  const [isOpen, setIsOpen] = useState(() => {
+    return JSON.parse(getData) || false;
   });
+  const [projectSelected, setProjectSelected] = useState(() => {
+    return (
+      JSON.parse(localStorage.getItem(dataId)) || {
+        selectedProjectsId: undefined,
+        projects: [],
+        tasks: [],
+      }
+    );
+  });
+
+  // Save data to local storage whenever projectSelected changes
+  useEffect(() => {
+    window.localStorage.setItem(dataId, JSON.stringify(projectSelected));
+  }, [projectSelected]);
+
+  useEffect(() => {
+    const getData = window.localStorage.getItem("isOpen");
+    setIsOpen(JSON.parse(getData));
+    console.log(getData);
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("isOpen", JSON.stringify(isOpen));
+  }, [isOpen]);
 
   const handleToogle = () => {
     setIsOpen((open) => !open);
@@ -103,6 +127,7 @@ function App() {
       onAddTasks={handleAddTasks}
       onDeleteTasks={handleDeleteTasks}
       tasks={projectSelected.tasks}
+      projectId={projectSelected.selectedProjectsId}
     />
   );
 

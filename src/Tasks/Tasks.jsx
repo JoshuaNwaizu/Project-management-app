@@ -1,7 +1,7 @@
 import React from "react";
 import NewTasks from "./NewTasks";
 
-const Tasks = ({ tasks, onAdd, onDelete, project }) => {
+const Tasks = ({ tasks, onAdd, onDelete }) => {
   return (
     <div>
       <h1 className="capitalize text-2xl font-bold text-stone-700 mb-4">
