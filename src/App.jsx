@@ -155,7 +155,7 @@ function App() {
         selectedListId={projectSelected.selectedProjectsId}
         classNames={
           isOpen &&
-          " max-sm:translate-x-0 max-sm:w-3/4 max-sm:transition-all max-sm:duration-300"
+          " max-sm:left-0 max-sm:w-3/4 max-sm:transition-all max-sm:duration-300"
         }
         handleClose={() => handleToogle()}
       />
