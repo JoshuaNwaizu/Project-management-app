@@ -15,7 +15,7 @@ const SelectedProject = ({
     day: "numeric",
   });
   return (
-    <div className="w-[35rem] mt-16 mr-8 max-sm:mx-4">
+    <div className="w-[35rem] mt-16 mr-8 max-sm:mx-4 max-[320px]:w-[18rem]">
       <header className="pb-4 mb-4 border-b-2 border-b-stone-700">
         <div className="flex justify-between items-center">
           <h1 className="text-3xl font-bold text-stone-600 mb-2 capitalize max-sm:text-2xl">

@@ -20,6 +20,7 @@ const NewProject = ({ onStop, addData, handleOpen }) => {
       enteredDueDate.trim() === ""
     ) {
       modal.current.open();
+
       return;
     } else {
       handleOpen();
@@ -42,7 +43,7 @@ const NewProject = ({ onStop, addData, handleOpen }) => {
           Please make sure you provide a value for every input field.
         </p>
       </Modal>
-      <div className="w-[34rem] mt-16  max-sm:mx-4">
+      <div className="w-[34rem] mt-16 max-sm:mx-4 min-[800px]:pr-8">
         <menu className="flex items-center justify-center my-4 gap-4">
           <li>
             <button

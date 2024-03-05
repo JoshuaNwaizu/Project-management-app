@@ -4,6 +4,9 @@ import NoContent from "./NoContent";
 import ProjectsSideBar from "./ProjectsSideBar";
 import SelectedProject from "./SelectedProject";
 import { RiMenu4Line } from "react-icons/ri";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./styles.css";
 
 function App() {
   // const id = useId();
@@ -31,7 +34,6 @@ function App() {
   useEffect(() => {
     const getData = window.localStorage.getItem("isOpen");
     setIsOpen(JSON.parse(getData));
-    console.log(getData);
   }, []);
 
   useEffect(() => {
@@ -50,6 +52,8 @@ function App() {
         projectId: prevSelected.selectedProjectsId,
         id: taskId,
       };
+      const projectToast = `${newTasks.text} added`;
+      toast.success(projectToast, { position: "top-center" });
       return {
         ...prevSelected,
         tasks: [...prevSelected.tasks, newTasks],
@@ -59,6 +63,9 @@ function App() {
 
   const handleDeleteTasks = (id) => {
     setProjectSelected((prevSelected) => {
+      toast.error("Task Deleted!", {
+        position: "top-left",
+      });
       return {
         ...prevSelected,
         tasks: prevSelected.tasks.filter((task) => task.id !== id),
@@ -88,6 +95,9 @@ function App() {
         ...projectData,
         id: Math.floor(Math.random() * 100) + 1,
       };
+      const projectToast = `New Project added: ${newProject.title}`;
+      toast.success(projectToast, { position: "top-center" });
+
       return {
         ...prevSelected,
         selectedProjectsId: undefined,
@@ -107,6 +117,9 @@ function App() {
 
   const handleDeleteItems = () => {
     setProjectSelected((prevSelected) => {
+      toast.error("Project Deleted!", {
+        position: "top-right",
+      });
       return {
         ...prevSelected,
         selectedProjectsId: undefined,
@@ -143,24 +156,27 @@ function App() {
     );
   }
   return (
-    <main className="h-screen my-8 flex gap-8 ">
-      <RiMenu4Line
-        className="text-3xl font-bold ml-6 absolute top-7 bg-stone-50 md:hidden"
-        onClick={() => handleToogle()}
-      />
-      <ProjectsSideBar
-        onSubmit={handleStartProjects}
-        projects={projectSelected.projects}
-        onSelectedList={handleSelectedList}
-        selectedListId={projectSelected.selectedProjectsId}
-        classNames={
-          isOpen &&
-          " max-sm:left-0 max-sm:w-3/4 max-sm:transition-all max-sm:duration-300"
-        }
-        handleClose={() => handleToogle()}
-      />
-      {content}
-    </main>
+    <>
+      <main className="h-screen my-8 flex gap-8 ">
+        <RiMenu4Line
+          className="text-3xl font-bold ml-6 absolute top-7 bg-stone-50 md:hidden"
+          onClick={() => handleToogle()}
+        />
+        <ProjectsSideBar
+          onSubmit={handleStartProjects}
+          projects={projectSelected.projects}
+          onSelectedList={handleSelectedList}
+          selectedListId={projectSelected.selectedProjectsId}
+          classNames={
+            isOpen &&
+            " max-sm:left-0 max-sm:w-3/4 max-sm:transition-all max-sm:duration-300"
+          }
+          handleClose={() => handleToogle()}
+        />
+        {content}
+      </main>
+      <ToastContainer />;
+    </>
   );
 }
 

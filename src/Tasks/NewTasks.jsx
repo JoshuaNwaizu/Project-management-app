@@ -15,10 +15,10 @@ const NewTasks = ({ onAdd }) => {
   };
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-4 max-[320px]:w-[18rem]">
       <input
         type="text"
-        className="w-64 py-1 px-2 rounded-md bg-stone-200"
+        className="w-64 py-1 px-2 rounded-md bg-stone-200 max-[320px]:w-[12rem]"
         value={updateInputTasks}
         onChange={handleInputTasks}
       />
