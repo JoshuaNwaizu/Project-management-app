@@ -16,14 +16,10 @@ function App() {
   const [isOpen, setIsOpen] = useState(() => {
     return JSON.parse(getData) || false;
   });
-  const [projectSelected, setProjectSelected] = useState(() => {
-    return (
-      JSON.parse(localStorage.getItem(dataId)) || {
-        selectedProjectsId: undefined,
-        projects: [],
-        tasks: [],
-      }
-    );
+  const [projectSelected, setProjectSelected] = useState({
+    selectedProjectsId: undefined,
+    projects: [],
+    tasks: [],
   });
 
   // Save data to local storage whenever projectSelected changes
