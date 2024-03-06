@@ -21,7 +21,7 @@ function App() {
       JSON.parse(localStorage.getItem(dataId)) || {
         selectedProjectsId: undefined,
         projects: [],
-        // tasks: [],
+        tasks: [],
       }
     );
   });
