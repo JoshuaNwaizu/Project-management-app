@@ -9,13 +9,13 @@ const Tasks = ({ tasks, onAdd, onDelete, projectId }) => {
       </h1>
       <NewTasks onAdd={onAdd} />
       {/* Tasks input */}
-      {tasks && tasks.length === 0 && (
+      {tasks.length === 0 && (
         <p className="text-stone-800 my-4">
           This project does not have any tasks yet!
         </p>
       )}
 
-      {tasks && tasks.length > 0 && (
+      {tasks.length > 0 && (
         <ul className="p-4 rounded-md bg-stone-100 mt-4">
           {tasks
             .filter((t) => t.projectId && t.projectId === projectId)
