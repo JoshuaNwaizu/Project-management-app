@@ -13,10 +13,10 @@ const NoContent = ({ onSubmit }) => {
         className="w-16 object-contain mx-auto"
       />
       <h2 className="text-2xl my-4 text-stone-500">
-        No Project selected or created
+        No Project selected or created!
       </h2>
       <p className="text-stone-400 mb-4">
-        Select a project or get started with a new one
+        Select a project or get started with a new one!
       </p>
       <div className="mx-6">
         <Button onClick={onSubmit}> Create new project</Button>

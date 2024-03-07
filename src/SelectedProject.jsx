@@ -3,6 +3,7 @@ import Tasks from "./Tasks/Tasks";
 import Modal from "./Modal";
 import { useRef } from "react";
 import Button from "./Button";
+import { BsExclamationSquare } from "react-icons/bs";
 
 const SelectedProject = ({
   project,
@@ -26,8 +27,16 @@ const SelectedProject = ({
   return (
     <>
       <Modal ref={modal} buttonText="No">
-        <p>Are you sure you want to delete {project.title} ?</p>
-        <div className="translate-y-16 flex">
+        <div className=" flex items-center justify-center mb-4 text-red-600">
+          {" "}
+          <BsExclamationSquare className="text-7xl" />
+        </div>
+
+        <p className="text-xl">
+          Are you sure you want to delete - '
+          <span className="font-bold">{project.title}</span>'?
+        </p>
+        <div className="translate-y-16 flex w-1/2">
           <Button onClick={onDelete}>Yes</Button>
         </div>
       </Modal>
