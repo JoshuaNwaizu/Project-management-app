@@ -19,7 +19,7 @@ function App() {
     tasks: [],
   };
 
-  const initialToggle = localStorage.getItem("isOpen") || false;
+  const initialToggle = JSON.parse(localStorage.getItem("isOpen"));
 
   const [isOpen, setIsOpen] = useState(initialToggle);
   const [projectSelected, setProjectSelected] = useState(initialState);
@@ -45,7 +45,7 @@ function App() {
         id: taskId,
       };
       const projectToast = `${newTasks.text} added`;
-      toast.success(projectToast, { position: "top-center" });
+      toast.success(projectToast, { position: "top-right" });
       return {
         ...prevSelected,
         tasks: [...prevSelected.tasks, newTasks],
