@@ -10,30 +10,27 @@ import "./styles.css";
 
 function App() {
   // const id = useId();
-  let dataId = "ProjectSelected";
+  //let dataId = "ProjectSelected";
   const getData = window.localStorage.getItem("isOpen");
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [projectSelected, setProjectSelected] = useState({
+  const initialState = JSON.parse(localStorage.getItem("ProjectSelected")) || {
     selectedProjectsId: undefined,
     projects: [],
     tasks: [],
-  });
+  };
+
+  const initialToggle = localStorage.getItem("isOpen") || false;
+
+  const [isOpen, setIsOpen] = useState(initialToggle);
+  const [projectSelected, setProjectSelected] = useState(initialState);
 
   useEffect(() => {
     localStorage.setItem("ProjectSelected", JSON.stringify(projectSelected));
   }, [projectSelected]);
 
   useEffect(() => {
-    let storedData = JSON.parse(localStorage.getItem("ProjectSelected")) || {
-      selectedProjectsId: undefined,
-      projects: [],
-      tasks: [],
-    };
-    if (storedData) {
-      setProjectSelected(storedData);
-    }
-  }, []);
+    localStorage.setItem("isOpen", JSON.stringify(isOpen));
+  }, [isOpen]);
 
   const handleToogle = () => {
     setIsOpen((open) => !open);
