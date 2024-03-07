@@ -13,28 +13,27 @@ function App() {
   let dataId = "ProjectSelected";
   const getData = window.localStorage.getItem("isOpen");
 
-  const [isOpen, setIsOpen] = useState(() => {
-    return JSON.parse(getData) || false;
-  });
+  const [isOpen, setIsOpen] = useState(false);
   const [projectSelected, setProjectSelected] = useState({
     selectedProjectsId: undefined,
     projects: [],
     tasks: [],
   });
 
-  // Save data to local storage whenever projectSelected changes
   useEffect(() => {
-    window.localStorage.setItem(dataId, JSON.stringify(projectSelected));
+    localStorage.setItem("ProjectSelected", JSON.stringify(projectSelected));
   }, [projectSelected]);
 
   useEffect(() => {
-    const getData = window.localStorage.getItem("isOpen");
-    setIsOpen(JSON.parse(getData));
+    let storedData = JSON.parse(localStorage.getItem("ProjectSelected")) || {
+      selectedProjectsId: undefined,
+      projects: [],
+      tasks: [],
+    };
+    if (storedData) {
+      setProjectSelected(storedData);
+    }
   }, []);
-
-  useEffect(() => {
-    window.localStorage.setItem("isOpen", JSON.stringify(isOpen));
-  }, [isOpen]);
 
   const handleToogle = () => {
     setIsOpen((open) => !open);
@@ -60,7 +59,7 @@ function App() {
   const handleDeleteTasks = (id) => {
     setProjectSelected((prevSelected) => {
       toast.error("Task Deleted!", {
-        position: "top-left",
+        position: "top-right",
       });
       return {
         ...prevSelected,
@@ -92,7 +91,7 @@ function App() {
         id: Math.floor(Math.random() * 100) + 1,
       };
       const projectToast = `New Project added: ${newProject.title}`;
-      toast.success(projectToast, { position: "top-center" });
+      toast.success(projectToast, { position: "top-right" });
 
       return {
         ...prevSelected,

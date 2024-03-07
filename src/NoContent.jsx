@@ -18,9 +18,9 @@ const NoContent = ({ onSubmit }) => {
       <p className="text-stone-400 mb-4">
         Select a project or get started with a new one
       </p>
-      <p className="mx-6">
+      <div className="mx-6">
         <Button onClick={onSubmit}> Create new project</Button>
-      </p>
+      </div>
     </div>
   );
 };
