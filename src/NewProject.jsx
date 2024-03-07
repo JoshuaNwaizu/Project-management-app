@@ -20,7 +20,6 @@ const NewProject = ({ onStop, addData, handleOpen }) => {
       enteredDueDate.trim() === ""
     ) {
       modal.current.open();
-
       return;
     } else {
       handleOpen();
