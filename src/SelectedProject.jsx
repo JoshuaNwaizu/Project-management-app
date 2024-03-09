@@ -3,7 +3,7 @@ import Tasks from "./Tasks/Tasks";
 import Modal from "./Modal";
 import { useRef } from "react";
 import Button from "./Button";
-import { BsExclamationSquare } from "react-icons/bs";
+import { BsExclamationCircle } from "react-icons/bs";
 
 const SelectedProject = ({
   project,
@@ -26,18 +26,18 @@ const SelectedProject = ({
 
   return (
     <>
-      <Modal ref={modal} buttonText="No">
+      <Modal ref={modal} buttonText="Cancel">
         <div className=" flex items-center justify-center mb-4 text-red-600">
           {" "}
-          <BsExclamationSquare className="text-7xl" />
+          <BsExclamationCircle className="text-7xl" />
         </div>
 
         <p className="text-xl">
           Are you sure you want to delete - '
-          <span className="font-bold">{project.title}</span>'?
+          <span className="font-bold">{project.title.toUpperCase()}</span>'?
         </p>
         <div className="translate-y-16 flex w-1/2">
-          <Button onClick={onDelete}>Yes</Button>
+          <Button onClick={onDelete}>Continue</Button>
         </div>
       </Modal>
       <div className="w-[35rem] mt-16 mr-8 max-sm:mx-4 max-[320px]:w-[18rem]">

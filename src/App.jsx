@@ -87,7 +87,7 @@ function App() {
         ...projectData,
         id: Math.floor(Math.random() * 100) + 1,
       };
-      const projectToast = `New Project added: ${newProject.title}`;
+      const projectToast = `New project - '${newProject.title.toUpperCase()}'`;
       toast.success(projectToast, { position: "top-right" });
 
       return {
@@ -120,6 +120,7 @@ function App() {
         ),
       };
     });
+    handleToogle();
   };
   const selectedList = projectSelected.projects.find(
     (project) => project.id === projectSelected.selectedProjectsId,

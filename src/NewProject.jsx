@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import Inputs from "./Inputs";
 import Button from "./Button";
 import Modal from "./Modal";
+import { BsExclamationCircle } from "react-icons/bs";
 
 const NewProject = ({ onStop, addData, handleOpen }) => {
   const modal = useRef();
@@ -34,6 +35,9 @@ const NewProject = ({ onStop, addData, handleOpen }) => {
   return (
     <>
       <Modal ref={modal} buttonText="Close">
+        <div className=" flex items-center justify-center mb-4 text-red-600">
+          <BsExclamationCircle className="text-7xl" />
+        </div>
         <h2 className="text-2xl my-4 text-stone-800">Invalid Input :(</h2>
         <p className="text-stone-700 mb-4">
           Oops... Looks like you missed a field.

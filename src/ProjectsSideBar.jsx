@@ -35,27 +35,33 @@ const ProjectsSideBar = ({
           <HiOutlinePlusSm className="text-xl" />
           Add Tasks
         </button>
-        <ul className="mt-8">
-          {projects.map((project) => {
-            let cssClasses =
-              "w-full text-left px-2 py-1 rounded-md my-1 hover:text-slate-200 hover:bg-stone-800 capitalize";
-            if (project.id === selectedListId) {
-              cssClasses += " bg-stone-800 text-stone-200";
-            } else {
-              cssClasses += " text-stone-400";
-            }
-            return (
-              <li key={project.id}>
-                <button
-                  className={cssClasses}
-                  onClick={() => onSelectedList(project.id)}
-                >
-                  {project.title}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
+        {projects.length === 0 && (
+          <p className="mt-4 text-stone-400 ml-5">[No tasks]</p>
+        )}
+
+        {projects.length > 0 && (
+          <ul className="mt-8">
+            {projects.map((project) => {
+              let cssClasses =
+                "w-full text-left px-2 py-1 rounded-md my-1 hover:text-slate-200 hover:bg-stone-800 capitalize";
+              if (project.id === selectedListId) {
+                cssClasses += " bg-stone-800 text-stone-200";
+              } else {
+                cssClasses += " text-stone-400";
+              }
+              return (
+                <li key={project.id}>
+                  <button
+                    className={cssClasses}
+                    onClick={() => onSelectedList(project.id)}
+                  >
+                    {project.title}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </div>
     </aside>
   );
