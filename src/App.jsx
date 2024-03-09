@@ -87,7 +87,7 @@ function App() {
         ...projectData,
         id: Math.floor(Math.random() * 100) + 1,
       };
-      const projectToast = `New project - '${newProject.title.toUpperCase()}'`;
+      const projectToast = `New project - '${newProject.title}'`;
       toast.success(projectToast, { position: "top-right" });
 
       return {
